@@ -328,7 +328,7 @@
                     </div>
                     <pre id="code-snippet" class="text-sm font-mono text-indigo-300 leading-relaxed overflow-x-auto"><code><span class="text-slate-500">&lt;!-- Easynav Free Widget --&gt;</span>
 &lt;<span class="text-pink-400">script</span> 
-  <span class="text-indigo-400">src</span>=<span class="text-green-400">"https://cdn.easynav.cl/easynav.min.js"</span>
+  <span class="text-indigo-400">src</span>=<span class="text-green-400">"https://cdn.jsdelivr.net/gh/Easynavvd/easynaveasynav.js"</span>
   <span class="text-indigo-400">defer</span>
 &gt;&lt;/<span class="text-pink-400">script</span>&gt;</code></pre>
                     <button id="copy-btn"
@@ -1018,7 +1018,7 @@
         // Funcionalidad de copiar al portapapeles
         document.getElementById('copy-btn').addEventListener('click', function() {
             const code = `<!-- Easynav Free Widget -->
-<script src="https://cdn.easynav.cl/easynav.min.js" defer><\/script>`;
+<script src="https://cdn.jsdelivr.net/gh/Easynavvd/easynaveasynav.js" defer><\/script>`;
             
             navigator.clipboard.writeText(code).then(function() {
                 const icon = document.getElementById('copy-icon');
