@@ -128,7 +128,7 @@
                     <a href="#getting-started" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all" data-i18n="docs-cta-start">
                         Comenzar
                     </a>
-                    <a href="https://github.com/easynav/easynav-free" target="_blank" class="bg-slate-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-700 transition-all flex items-center gap-2">
+                    <a href="https://github.com/Easynavvd/easynav" target="_blank" class="bg-slate-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-700 transition-all flex items-center gap-2">
                         <span class="material-symbols-outlined">code</span> <span data-i18n="docs-cta-github">GitHub</span>
                     </a>
                 </div>
@@ -142,28 +142,40 @@
             <h2 class="text-3xl font-black mb-8" data-i18n="docs-quickstart">Inicio Rápido</h2>
             
             <div class="grid lg:grid-cols-2 gap-12">
-                <div>
+                <div class="flex flex-col">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
                         <span class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
                         <span data-i18n="docs-basic-version">Versión Básica (Sin Configuración)</span>
                     </h3>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4" data-i18n="docs-basic-desc">
-                        La forma más simple de instalar Easynav. Solo agrega el script y funciona automáticamente.
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 min-h-[3.5rem] leading-relaxed" data-i18n="docs-basic-desc">
+                        La forma más simple de instalar Easynav.<br />Solo agrega el script y funciona automáticamente.
                     </p>
+                    <div class="flex justify-end mb-3">
+                        <button type="button" onclick="copyCdnCode('basic', this)" class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-200 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10" data-i18n-title="docs-copy-cdn">
+                            <span class="material-symbols-outlined text-base" data-copy-icon>content_copy</span>
+                            <span data-i18n="docs-copy-cdn">Copiar CDN</span>
+                        </button>
+                    </div>
                     <div class="code-block p-4">
                         <pre><code><span class="comment">&lt;!-- Easynav Free - Versión Básica --&gt;</span>
 <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/gh/Easynavvd/easynav@6b3d457357301575bd84b67f66745c1289954c98/easynav-free/easynav.js"</span> <span class="attr">defer</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
                     </div>
                 </div>
 
-                <div>
+                <div class="flex flex-col">
                     <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
                         <span class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
                         <span data-i18n="docs-custom-version">Versión Personalizable</span>
                     </h3>
-                    <p class="text-slate-600 dark:text-slate-400 mb-4" data-i18n="docs-custom-desc">
-                        Usa la versión custom para personalizar colores, comportamiento y más.
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 min-h-[3.5rem] leading-relaxed" data-i18n="docs-custom-desc">
+                        Usa la versión custom para personalizar<br />colores, comportamiento y más.
                     </p>
+                    <div class="flex justify-end mb-3">
+                        <button type="button" onclick="copyCdnCode('custom', this)" class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-200 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10" data-i18n-title="docs-copy-cdn">
+                            <span class="material-symbols-outlined text-base" data-copy-icon>content_copy</span>
+                            <span data-i18n="docs-copy-cdn">Copiar CDN</span>
+                        </button>
+                    </div>
                     <div class="code-block p-4">
                         <pre><code><span class="comment">&lt;!-- Easynav Free - Versión Personalizable --&gt;</span>
 <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/gh/Easynavvd/easynav@6b3d457357301575bd84b67f66745c1289954c98/easynav-free/easynav-custom.js"</span> <span class="attr">defer</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
@@ -1004,38 +1016,121 @@
     </footer>
 
     <script>
+        const BASIC_CDN_URL = 'https://cdn.jsdelivr.net/gh/Easynavvd/easynav@6b3d457357301575bd84b67f66745c1289954c98/easynav-free/easynav.js';
+        const CUSTOM_CDN_URL = 'https://cdn.jsdelivr.net/gh/Easynavvd/easynav@6b3d457357301575bd84b67f66745c1289954c98/easynav-free/easynav-custom.js';
+        const CDN_SNIPPETS = {
+            basic: `<!-- Easynav Free - Versión Básica -->
+<script src="${BASIC_CDN_URL}" defer><\/script>`,
+            custom: `<!-- Easynav Free - Versión Personalizable -->
+<script src="${CUSTOM_CDN_URL}" defer><\/script>`
+        };
+
+        function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                document.execCommand('copy');
+                return Promise.resolve();
+            } catch (error) {
+                return Promise.reject(error);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function copyCdnCode(kind, button) {
+            const code = CDN_SNIPPETS[kind];
+            if (!code) {
+                return;
+            }
+
+            copyText(code).then(() => {
+                const icon = button.querySelector('[data-copy-icon]');
+                if (!icon) {
+                    return;
+                }
+
+                icon.textContent = 'check';
+                clearTimeout(button._copyResetTimeout);
+                button._copyResetTimeout = setTimeout(() => {
+                    icon.textContent = 'content_copy';
+                }, 1600);
+            }).catch((error) => {
+                console.error('No se pudo copiar el CDN.', error);
+            });
+        }
+
+        function getCustomizerOptions() {
+            return {
+                primaryColor: document.getElementById('cfg-primary').value,
+                backgroundColor: document.getElementById('cfg-bg').value,
+                floatingPosition: document.getElementById('cfg-floating-pos').value,
+                fontSizeMin: Number(document.getElementById('cfg-font-min').value),
+                fontSizeMax: Number(document.getElementById('cfg-font-max').value),
+                floatingEnabled: document.getElementById('cfg-floating').checked,
+                floatingDraggable: document.getElementById('cfg-draggable').checked
+            };
+        }
+
+        function applyLiveCustomizerOptions(options) {
+            if (typeof window.EasynavCustom !== 'function') {
+                return;
+            }
+
+            if (window.Easynav && typeof window.Easynav.destroy === 'function') {
+                window.Easynav.destroy();
+            }
+
+            window.Easynav = new window.EasynavCustom(options);
+            window.Easynav.init();
+        }
+
         // Generador de código en vivo
         function updateGeneratedCode() {
-            const primary = document.getElementById('cfg-primary').value;
-            const bg = document.getElementById('cfg-bg').value;
-            const floatingPos = document.getElementById('cfg-floating-pos').value;
-            const fontMin = document.getElementById('cfg-font-min').value;
-            const fontMax = document.getElementById('cfg-font-max').value;
-            const floating = document.getElementById('cfg-floating').checked;
-            const draggable = document.getElementById('cfg-draggable').checked;
+            const options = getCustomizerOptions();
+            const {
+                primaryColor,
+                backgroundColor,
+                floatingPosition,
+                fontSizeMin,
+                fontSizeMax,
+                floatingEnabled,
+                floatingDraggable
+            } = options;
 
             // Actualizar preview visual
-            updateWidgetPreview(primary, bg);
+            updateWidgetPreview(primaryColor, backgroundColor);
+            applyLiveCustomizerOptions(options);
 
             const code = `<script>
   window.EasynavConfig = {
-    primaryColor: '${primary}',
-    backgroundColor: '${bg}',
-    floatingEnabled: ${floating},
-    floatingPosition: '${floatingPos}',
-    floatingDraggable: ${draggable},
-    fontSizeMin: ${fontMin},
-    fontSizeMax: ${fontMax}
+    primaryColor: '${primaryColor}',
+    backgroundColor: '${backgroundColor}',
+    floatingEnabled: ${floatingEnabled},
+    floatingPosition: '${floatingPosition}',
+    floatingDraggable: ${floatingDraggable},
+    fontSizeMin: ${fontSizeMin},
+    fontSizeMax: ${fontSizeMax}
   };
 <\/script>
-<script src="https://cdn.jsdelivr.net/gh/Easynavvd/easynav@6b3d457357301575bd84b67f66745c1289954c98/easynav-free/easynav-custom.js" defer><\/script>`;
+<script src="${CUSTOM_CDN_URL}" defer><\/script>`;
 
             document.querySelector('#generated-code code').textContent = code;
         }
 
         function copyGeneratedCode() {
             const code = document.querySelector('#generated-code code').textContent;
-            navigator.clipboard.writeText(code).then(() => {
+            copyText(code).then(() => {
                 alert('¡Código copiado!');
             });
         }
@@ -1100,6 +1195,9 @@
 
     <!-- Load Easynav Custom para demo -->
     <script src="https://cdn.jsdelivr.net/gh/Easynavvd/easynav@6b3d457357301575bd84b67f66745c1289954c98/easynav-free/easynav-custom.js"></script>
+    <script>
+        applyLiveCustomizerOptions(getCustomizerOptions());
+    </script>
 
     <!-- Selector de Idioma Flotante -->
     <div class="fixed bottom-6 left-6 z-50">
@@ -1160,9 +1258,10 @@
                     // Quick Start
                     'docs-quickstart': 'Inicio Rápido',
                     'docs-basic-version': 'Versión Básica (Sin Configuración)',
-                    'docs-basic-desc': 'La forma más simple de instalar Easynav. Solo agrega el script y funciona automáticamente.',
+                    'docs-basic-desc': 'La forma más simple de instalar Easynav.<br />Solo agrega el script y funciona automáticamente.',
                     'docs-custom-version': 'Versión Personalizable',
-                    'docs-custom-desc': 'Usa la versión custom para personalizar colores, comportamiento y más.',
+                    'docs-custom-desc': 'Usa la versión custom para personalizar<br />colores, comportamiento y más.',
+                    'docs-copy-cdn': 'Copiar CDN',
                     'docs-config-methods': 'Métodos de Configuración',
                     'docs-method-data-attrs': 'Data Attributes',
                     'docs-method-data-attrs-desc': 'Configura directamente en el tag script con atributos data-*',
@@ -1282,9 +1381,10 @@
                     // Quick Start
                     'docs-quickstart': 'Quick Start',
                     'docs-basic-version': 'Basic Version (No Configuration)',
-                    'docs-basic-desc': 'The simplest way to install Easynav. Just add the script and it works automatically.',
+                    'docs-basic-desc': 'The simplest way to install Easynav.<br />Just add the script and it works automatically.',
                     'docs-custom-version': 'Customizable Version',
-                    'docs-custom-desc': 'Use the custom version to personalize colors, behavior and more.',
+                    'docs-custom-desc': 'Use the custom version to personalize<br />colors, behavior and more.',
+                    'docs-copy-cdn': 'Copy CDN',
                     'docs-config-methods': 'Configuration Methods',
                     'docs-method-data-attrs': 'Data Attributes',
                     'docs-method-data-attrs-desc': 'Configure directly in the script tag with data-* attributes',
@@ -1404,9 +1504,10 @@
                     // Quick Start
                     'docs-quickstart': 'Início Rápido',
                     'docs-basic-version': 'Versão Básica (Sem Configuração)',
-                    'docs-basic-desc': 'A forma mais simples de instalar Easynav. Apenas adicione o script e funciona automaticamente.',
+                    'docs-basic-desc': 'A forma mais simples de instalar Easynav.<br />Apenas adicione o script e funciona automaticamente.',
                     'docs-custom-version': 'Versão Personalizável',
-                    'docs-custom-desc': 'Use a versão custom para personalizar cores, comportamento e mais.',
+                    'docs-custom-desc': 'Use a versão custom para personalizar<br />cores, comportamento e mais.',
+                    'docs-copy-cdn': 'Copiar CDN',
                     'docs-config-methods': 'Métodos de Configuração',
                     'docs-method-data-attrs': 'Data Attributes',
                     'docs-method-data-attrs-desc': 'Configure diretamente na tag script com atributos data-*',

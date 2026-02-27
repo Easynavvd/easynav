@@ -215,11 +215,8 @@
         return this;
       }
 
-      this._createStyles();
-      this._createHTML();
       this._loadState();
-      this._applyState();
-      this._initEvents();
+      this._render();
 
       if (typeof this.options.onInit === 'function') {
         this.options.onInit(this);
@@ -233,20 +230,7 @@
      * Destruye la instancia de Easynav
      */
     destroy() {
-      // Remover event listeners
-      window.removeEventListener('scroll', this._handleScroll);
-      window.removeEventListener('resize', this._handleResize);
-      document.removeEventListener('mousemove', this._handleMouseMove);
-      document.removeEventListener('mouseup', this._handleMouseUp);
-
-      // Remover elementos del DOM
-      const container = document.getElementById('easynav---main');
-      const styles = document.getElementById('easynav---styles');
-      const dynamicStyles = document.getElementById('easynav---dynamic-font-styles');
-      
-      if (container) container.remove();
-      if (styles) styles.remove();
-      if (dynamicStyles) dynamicStyles.remove();
+      this._teardown({ removeDynamicStyles: true });
 
       // Resetear body zoom
       document.body.style.zoom = '';
@@ -371,7 +355,12 @@
      */
     setOptions(newOptions) {
       this.options = this._mergeDeep(this.options, newOptions);
-      this._updateStyles();
+      this.state.fontSize = Math.max(
+        this.options.fontSizeMin,
+        Math.min(this.options.fontSizeMax, this.state.fontSize)
+      );
+      this._render();
+      this._saveState();
       return this;
     }
 
@@ -391,6 +380,44 @@
       if (style) {
         style.textContent = this._generateCSS();
       }
+    }
+
+    _render() {
+      this._teardown();
+      this._createStyles();
+      this._createHTML();
+      this._applyState();
+      this._initEvents();
+
+      if (this.options.floatingEnabled) {
+        this._handleScroll();
+      }
+    }
+
+    _teardown({ removeDynamicStyles = false } = {}) {
+      window.removeEventListener('scroll', this._handleScroll);
+      window.removeEventListener('resize', this._handleResize);
+      document.removeEventListener('mousemove', this._handleMouseMove);
+      document.removeEventListener('mouseup', this._handleMouseUp);
+
+      if (this.elements.container) {
+        this.elements.container.removeEventListener('mousedown', this._handleMouseDown);
+      }
+
+      const container = document.getElementById('easynav---main');
+      const styles = document.getElementById('easynav---styles');
+
+      if (container) container.remove();
+      if (styles) styles.remove();
+
+      if (removeDynamicStyles) {
+        const dynamicStyles = document.getElementById('easynav---dynamic-font-styles');
+        if (dynamicStyles) dynamicStyles.remove();
+      }
+
+      this.elements = {};
+      this.state.isFloating = false;
+      this.state.isDragging = false;
     }
 
     _generateCSS() {
