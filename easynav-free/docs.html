@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Easynav Free - Documentación y Configuración</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5739ef",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"],
+                        "mono": ["Fira Code", "monospace"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        .code-block {
+            background: #1e1e2e;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .code-block code {
+            color: #cdd6f4;
+        }
+        .code-block .keyword { color: #cba6f7; }
+        .code-block .string { color: #a6e3a1; }
+        .code-block .number { color: #fab387; }
+        .code-block .comment { color: #6c7086; }
+        .code-block .property { color: #89b4fa; }
+        .code-block .tag { color: #f38ba8; }
+        .code-block .attr { color: #f9e2af; }
+        
+        /* Demo iframe container */
+        .demo-frame {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .demo-frame iframe {
+            display: block;
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* Custom scrollbar for code */
+        .code-block::-webkit-scrollbar {
+            height: 8px;
+        }
+        .code-block::-webkit-scrollbar-track {
+            background: #313244;
+        }
+        .code-block::-webkit-scrollbar-thumb {
+            background: #45475a;
+            border-radius: 4px;
+        }
+
+        /* Table styles */
+        .options-table th {
+            background: #f8fafc;
+        }
+        .dark .options-table th {
+            background: rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-primary/20 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+                            <span class="material-symbols-outlined">navigation</span>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight">Easynav <span class="text-primary">Free</span></span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a class="hover:text-primary transition-colors" href="#getting-started" data-i18n="docs-nav-start">Inicio</a>
+                    <a class="hover:text-primary transition-colors" href="#settings" data-i18n="docs-nav-settings">Configuración</a>
+                    <a class="hover:text-primary transition-colors" href="#demos" data-i18n="docs-nav-demos">Demos</a>
+                    <a class="hover:text-primary transition-colors" href="#methods" data-i18n="docs-nav-methods">Métodos</a>
+                    <a class="hover:text-primary transition-colors" href="#events" data-i18n="docs-nav-events">Eventos</a>
+                </nav>
+                <a href="index.html" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg text-sm font-bold transition-all" data-i18n="docs-nav-back">
+                    ← Volver
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-br from-primary/10 to-background-light dark:from-primary/20 dark:to-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl lg:text-5xl font-black mb-6" data-i18n="docs-title">Documentación</h1>
+                <p class="text-xl text-slate-600 dark:text-slate-300 mb-4" data-i18n="docs-desc">
+                    Aprende a configurar y personalizar Easynav Free para que se adapte perfectamente a tu sitio web.
+                </p>
+                <div class="p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl mb-8">
+                    <p class="text-sm text-amber-600 dark:text-amber-400" data-i18n="docs-warning">
+                        <span class="material-symbols-outlined text-sm align-middle">info</span>
+                        <strong>Importante:</strong> Easynav ofrece herramientas de usabilidad, NO es una solución de accesibilidad real. 
+                        <a href="https://accessibility.cl" target="_blank" class="underline font-bold">Conoce más sobre accesibilidad real</a>.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#getting-started" class="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-primary/90 transition-all" data-i18n="docs-cta-start">
+                        Comenzar
+                    </a>
+                    <a href="https://github.com/easynav/easynav-free" target="_blank" class="bg-slate-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-700 transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined">code</span> <span data-i18n="docs-cta-github">GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section id="getting-started" class="py-20 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-black mb-8" data-i18n="docs-quickstart">Inicio Rápido</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                        <span data-i18n="docs-basic-version">Versión Básica (Sin Configuración)</span>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-4" data-i18n="docs-basic-desc">
+                        La forma más simple de instalar Easynav. Solo agrega el script y funciona automáticamente.
+                    </p>
+                    <div class="code-block p-4">
+                        <pre><code><span class="comment">&lt;!-- Easynav Free - Versión Básica --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.easynav.cl/easynav.min.js"</span> <span class="attr">defer</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                        <span data-i18n="docs-custom-version">Versión Personalizable</span>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-4" data-i18n="docs-custom-desc">
+                        Usa la versión custom para personalizar colores, comportamiento y más.
+                    </p>
+                    <div class="code-block p-4">
+                        <pre><code><span class="comment">&lt;!-- Easynav Free - Versión Personalizable --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.easynav.cl/easynav-custom.min.js"</span> <span class="attr">defer</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-xl font-bold mb-6" data-i18n="docs-config-methods">Métodos de Configuración</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
+                            <span class="material-symbols-outlined text-2xl">data_object</span>
+                        </div>
+                        <h4 class="font-bold mb-2" data-i18n="docs-method-data-attrs">Data Attributes</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400" data-i18n="docs-method-data-attrs-desc">Configura directamente en el tag script con atributos data-*</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
+                            <span class="material-symbols-outlined text-2xl">code</span>
+                        </div>
+                        <h4 class="font-bold mb-2" data-i18n="docs-method-js-obj">JavaScript Object</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400" data-i18n="docs-method-js-obj-desc">Define window.EasynavConfig antes de cargar el script</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
+                            <span class="material-symbols-outlined text-2xl">api</span>
+                        </div>
+                        <h4 class="font-bold mb-2" data-i18n="docs-method-api">API Runtime</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400" data-i18n="docs-method-api-desc">Modifica opciones en tiempo real con métodos de la API</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Settings Table -->
+    <section id="settings" class="py-20 bg-slate-50 dark:bg-background-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-black mb-4" data-i18n="docs-settings-title">Opciones de Configuración</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-8" data-i18n="docs-settings-desc">
+                Todas las opciones disponibles para personalizar Easynav Free.
+            </p>
+
+            <!-- Apariencia -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">palette</span>
+                    <span data-i18n="docs-settings-appearance">Apariencia</span>
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="options-table w-full bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <thead>
+                            <tr class="text-left text-sm font-bold border-b border-slate-200 dark:border-white/10">
+                                <th class="p-4" data-i18n="docs-table-option">Opción</th>
+                                <th class="p-4">Data Attribute</th>
+                                <th class="p-4" data-i18n="docs-table-type">Tipo</th>
+                                <th class="p-4">Default</th>
+                                <th class="p-4" data-i18n="docs-table-description">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-slate-200 dark:divide-white/10">
+                            <tr>
+                                <td class="p-4 font-mono text-primary">primaryColor</td>
+                                <td class="p-4 font-mono text-xs">data-primary-color</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">#5739ef</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-primaryColor">Color principal para hover y elementos activos</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">backgroundColor</td>
+                                <td class="p-4 font-mono text-xs">data-background-color</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">#f8f9fa</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-backgroundColor">Color de fondo de la barra</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">textColor</td>
+                                <td class="p-4 font-mono text-xs">data-text-color</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">#1a1a1a</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-textColor">Color del texto</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">borderColor</td>
+                                <td class="p-4 font-mono text-xs">data-border-color</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">#e5e5e5</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-borderColor">Color del borde</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">borderRadius</td>
+                                <td class="p-4 font-mono text-xs">data-border-radius</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">4px</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-borderRadius">Radio de bordes de los botones</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">position</td>
+                                <td class="p-4 font-mono text-xs">data-position</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">'top'</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-position">'top' | 'bottom' - Posición de la barra</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">zIndex</td>
+                                <td class="p-4 font-mono text-xs">data-z-index</td>
+                                <td class="p-4">number</td>
+                                <td class="p-4 font-mono">99999</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-zIndex">z-index del contenedor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tamaño de Fuente -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">text_fields</span>
+                    <span data-i18n="docs-settings-fontsize">Tamaño de Fuente</span>
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="options-table w-full bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <thead>
+                            <tr class="text-left text-sm font-bold border-b border-slate-200 dark:border-white/10">
+                                <th class="p-4" data-i18n="docs-table-option">Opción</th>
+                                <th class="p-4">Data Attribute</th>
+                                <th class="p-4" data-i18n="docs-table-type">Tipo</th>
+                                <th class="p-4">Default</th>
+                                <th class="p-4" data-i18n="docs-table-description">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-slate-200 dark:divide-white/10">
+                            <tr>
+                                <td class="p-4 font-mono text-primary">fontSizeEnabled</td>
+                                <td class="p-4 font-mono text-xs">data-font-enabled</td>
+                                <td class="p-4">boolean</td>
+                                <td class="p-4 font-mono">true</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-fontSizeEnabled">Habilitar controles de tamaño de fuente</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">fontSizeMin</td>
+                                <td class="p-4 font-mono text-xs">data-font-min</td>
+                                <td class="p-4">number</td>
+                                <td class="p-4 font-mono">80</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-fontSizeMin">Porcentaje mínimo de zoom</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">fontSizeMax</td>
+                                <td class="p-4 font-mono text-xs">data-font-max</td>
+                                <td class="p-4">number</td>
+                                <td class="p-4 font-mono">150</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-fontSizeMax">Porcentaje máximo de zoom</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">fontSizeStep</td>
+                                <td class="p-4 font-mono text-xs">data-font-step</td>
+                                <td class="p-4">number</td>
+                                <td class="p-4 font-mono">10</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-fontSizeStep">Incremento por cada clic</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">fontSizeDefault</td>
+                                <td class="p-4 font-mono text-xs">data-font-default</td>
+                                <td class="p-4">number</td>
+                                <td class="p-4 font-mono">100</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-fontSizeDefault">Valor inicial</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Alto Contraste -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">contrast</span>
+                    <span data-i18n="docs-settings-contrast">Alto Contraste</span>
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="options-table w-full bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <thead>
+                            <tr class="text-left text-sm font-bold border-b border-slate-200 dark:border-white/10">
+                                <th class="p-4" data-i18n="docs-table-option">Opción</th>
+                                <th class="p-4">Data Attribute</th>
+                                <th class="p-4" data-i18n="docs-table-type">Tipo</th>
+                                <th class="p-4">Default</th>
+                                <th class="p-4" data-i18n="docs-table-description">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-slate-200 dark:divide-white/10">
+                            <tr>
+                                <td class="p-4 font-mono text-primary">contrastEnabled</td>
+                                <td class="p-4 font-mono text-xs">data-contrast</td>
+                                <td class="p-4">boolean</td>
+                                <td class="p-4 font-mono">true</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-contrastEnabled">Habilitar botón de alto contraste</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">contrastBackground</td>
+                                <td class="p-4 font-mono text-xs">data-contrast-bg</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">#333333</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-contrastBackground">Color de fondo en modo contraste</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">contrastText</td>
+                                <td class="p-4 font-mono text-xs">data-contrast-text</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">#ffffff</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-contrastText">Color de texto en modo contraste</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">contrastLinkHover</td>
+                                <td class="p-4 font-mono text-xs">data-contrast-hover</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">#ffff00</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-contrastLinkHover">Color hover de links en contraste</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modo Flotante -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">drag_pan</span>
+                    <span data-i18n="docs-settings-floating">Modo Flotante</span>
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="options-table w-full bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <thead>
+                            <tr class="text-left text-sm font-bold border-b border-slate-200 dark:border-white/10">
+                                <th class="p-4" data-i18n="docs-table-option">Opción</th>
+                                <th class="p-4">Data Attribute</th>
+                                <th class="p-4" data-i18n="docs-table-type">Tipo</th>
+                                <th class="p-4">Default</th>
+                                <th class="p-4" data-i18n="docs-table-description">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-slate-200 dark:divide-white/10">
+                            <tr>
+                                <td class="p-4 font-mono text-primary">floatingEnabled</td>
+                                <td class="p-4 font-mono text-xs">data-floating</td>
+                                <td class="p-4">boolean</td>
+                                <td class="p-4 font-mono">true</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-floatingEnabled">Habilitar modo flotante al scroll</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">floatingThreshold</td>
+                                <td class="p-4 font-mono text-xs">data-floating-threshold</td>
+                                <td class="p-4">number</td>
+                                <td class="p-4 font-mono">100</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-floatingThreshold">Pixels de scroll para activar</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">floatingPosition</td>
+                                <td class="p-4 font-mono text-xs">data-floating-position</td>
+                                <td class="p-4">string</td>
+                                <td class="p-4 font-mono">'top-right'</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-floatingPosition">'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">floatingDraggable</td>
+                                <td class="p-4 font-mono text-xs">data-draggable</td>
+                                <td class="p-4">boolean</td>
+                                <td class="p-4 font-mono">true</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-floatingDraggable">Permitir arrastrar en modo flotante</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Textos -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">translate</span>
+                    <span data-i18n="docs-settings-texts">Textos Personalizables</span>
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="options-table w-full bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <thead>
+                            <tr class="text-left text-sm font-bold border-b border-slate-200 dark:border-white/10">
+                                <th class="p-4" data-i18n="docs-table-option">Opción</th>
+                                <th class="p-4">Data Attribute</th>
+                                <th class="p-4">Default</th>
+                                <th class="p-4" data-i18n="docs-table-description">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-slate-200 dark:divide-white/10">
+                            <tr class="bg-slate-50 dark:bg-white/5">
+                                <td colspan="4" class="p-4 text-center text-sm text-slate-500 dark:text-slate-400">
+                                    <span class="material-symbols-outlined text-sm align-middle">info</span>
+                                    <span data-i18n="docs-brand-notice">El texto de marca "Herramientas por Accessibility.cl" no es personalizable.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-mono text-primary">labels.reset</td>
+                                <td class="p-4 font-mono text-xs">-</td>
+                                <td class="p-4 font-mono">'Restablecer'</td>
+                                <td class="p-4 text-slate-600 dark:text-slate-400" data-i18n="docs-opt-labels-reset">Texto del botón reset</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demos -->
+    <section id="demos" class="py-20 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-black mb-4" data-i18n="docs-demos-title">Demos Interactivas</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-12" data-i18n="docs-demos-desc">
+                Prueba diferentes configuraciones en tiempo real.
+            </p>
+
+            <!-- Demo 1: Data Attributes -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-4" data-i18n="docs-demo1-title">1. Configuración via Data Attributes</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6" data-i18n="docs-demo1-desc">
+                    La forma más simple de personalizar: agrega atributos data-* directamente en el script tag.
+                </p>
+                <div class="code-block p-4 mb-6">
+                    <pre><code><span class="tag">&lt;script</span>
+  <span class="attr">src</span>=<span class="string">"easynav-custom.js"</span>
+  <span class="attr">data-primary-color</span>=<span class="string">"#e11d48"</span>
+  <span class="attr">data-background-color</span>=<span class="string">"#fef2f2"</span>
+  <span class="attr">data-floating-position</span>=<span class="string">"bottom-right"</span>
+  <span class="attr">defer</span>
+<span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+                </div>
+                <!-- Preview Visual -->
+                <div class="mb-6">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2 font-medium uppercase tracking-wider">Vista previa:</p>
+                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg shadow-lg" style="background-color: #fef2f2; border: 1px solid #fecdd3;">
+                        <a href="#" class="text-xs font-medium" style="color: #e11d48;">Herramientas por Accessibility.cl</a>
+                        <div class="flex items-center gap-1">
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold" style="background: white; border-color: #fecdd3; color: #374151;">A</button>
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold" style="background: white; border-color: #fecdd3; color: #374151;">A</button>
+                        </div>
+                        <button class="w-7 h-7 rounded border flex items-center justify-center" style="background: white; border-color: #fecdd3;">
+                            <span style="color: #374151;">◐</span>
+                        </button>
+                        <button class="px-2 py-1 rounded text-xs" style="background: #e11d48; color: white;">Restablecer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo 2: JavaScript Config -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-4" data-i18n="docs-demo2-title">2. Configuración via JavaScript</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6" data-i18n="docs-demo2-desc">
+                    Define un objeto de configuración antes de cargar el script para mayor control.
+                </p>
+                <div class="code-block p-4 mb-6">
+                    <pre><code><span class="tag">&lt;script&gt;</span>
+  <span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+    <span class="property">primaryColor</span>: <span class="string">'#059669'</span>,
+    <span class="property">backgroundColor</span>: <span class="string">'#ecfdf5'</span>,
+    <span class="property">fontSizeMin</span>: <span class="number">70</span>,
+    <span class="property">fontSizeMax</span>: <span class="number">200</span>,
+    <span class="property">fontSizeStep</span>: <span class="number">15</span>,
+    <span class="property">floatingPosition</span>: <span class="string">'top-left'</span>,
+    <span class="property">onFontChange</span>: <span class="keyword">function</span>(size) {
+      <span class="keyword">console</span>.log(<span class="string">'Tamaño cambiado a:'</span>, size);
+    }
+  };
+<span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"easynav-custom.js"</span> <span class="attr">defer</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+                </div>
+                <!-- Preview Visual -->
+                <div class="mb-6">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2 font-medium uppercase tracking-wider">Vista previa:</p>
+                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg shadow-lg" style="background-color: #ecfdf5; border: 1px solid #a7f3d0;">
+                        <a href="#" class="text-xs font-medium" style="color: #059669;">Herramientas por Accessibility.cl</a>
+                        <div class="flex items-center gap-1">
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold" style="background: white; border-color: #a7f3d0; color: #374151;">A</button>
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold" style="background: white; border-color: #a7f3d0; color: #374151;">A</button>
+                        </div>
+                        <button class="w-7 h-7 rounded border flex items-center justify-center" style="background: white; border-color: #a7f3d0;">
+                            <span style="color: #374151;">◐</span>
+                        </button>
+                        <button class="px-2 py-1 rounded text-xs" style="background: #059669; color: white;">Restablecer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo 3: Sin Floating -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-4" data-i18n="docs-demo3-title">3. Barra Fija (Sin Modo Flotante)</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6" data-i18n="docs-demo3-desc">
+                    Desactiva el modo flotante para mantener la barra siempre en su posición original.
+                </p>
+                <div class="code-block p-4 mb-6">
+                    <pre><code><span class="tag">&lt;script</span>
+  <span class="attr">src</span>=<span class="string">"easynav-custom.js"</span>
+  <span class="attr">data-floating</span>=<span class="string">"false"</span>
+  <span class="attr">defer</span>
+<span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+                </div>
+                <!-- Preview Visual -->
+                <div class="mb-6">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2 font-medium uppercase tracking-wider">Vista previa (barra fija superior):</p>
+                    <div class="w-full flex items-center justify-between gap-3 px-4 py-2 rounded-lg shadow-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <a href="#" class="text-xs font-medium text-primary">Herramientas por Accessibility.cl</a>
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1">
+                                <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">A</button>
+                                <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">A</button>
+                            </div>
+                            <button class="w-7 h-7 rounded border flex items-center justify-center bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600">
+                                <span class="text-slate-700 dark:text-slate-200">◐</span>
+                            </button>
+                            <button class="px-2 py-1 rounded text-xs bg-primary text-white">Restablecer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo 4: Solo Contraste -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-4" data-i18n="docs-demo4-title">4. Solo Alto Contraste (Sin Controles de Fuente)</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6" data-i18n="docs-demo4-desc">
+                    Muestra solo el botón de alto contraste.
+                </p>
+                <div class="code-block p-4 mb-6">
+                    <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">fontSizeEnabled</span>: <span class="keyword">false</span>,
+  <span class="property">showFontControls</span>: <span class="keyword">false</span>,
+  <span class="property">contrastEnabled</span>: <span class="keyword">true</span>
+};</code></pre>
+                </div>
+                <!-- Preview Visual -->
+                <div class="mb-6">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2 font-medium uppercase tracking-wider">Vista previa (solo contraste):</p>
+                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg shadow-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <a href="#" class="text-xs font-medium text-primary">Herramientas por Accessibility.cl</a>
+                        <button class="w-7 h-7 rounded border flex items-center justify-center bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600">
+                            <span class="text-slate-700 dark:text-slate-200">◐</span>
+                        </button>
+                        <button class="px-2 py-1 rounded text-xs bg-primary text-white">Restablecer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo 5: Solo Tamaño de Fuente -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-4" data-i18n="docs-demo5-title">5. Solo Tamaño de Fuente (Sin Alto Contraste)</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6" data-i18n="docs-demo5-desc">
+                    Muestra solo los controles de tamaño de fuente, sin el botón de contraste.
+                </p>
+                <div class="code-block p-4 mb-6">
+                    <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">fontSizeEnabled</span>: <span class="keyword">true</span>,
+  <span class="property">showFontControls</span>: <span class="keyword">true</span>,
+  <span class="property">contrastEnabled</span>: <span class="keyword">false</span>,
+  <span class="property">showContrastButton</span>: <span class="keyword">false</span>
+};</code></pre>
+                </div>
+                <!-- Preview Visual -->
+                <div class="mb-6">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2 font-medium uppercase tracking-wider">Vista previa (solo tamaño de fuente):</p>
+                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg shadow-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <a href="#" class="text-xs font-medium text-primary">Herramientas por Accessibility.cl</a>
+                        <div class="flex items-center gap-1">
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">A</button>
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200">A</button>
+                        </div>
+                        <button class="px-2 py-1 rounded text-xs bg-primary text-white">Restablecer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo 6: Tema Oscuro -->
+            <div class="mb-16">
+                <h3 class="text-xl font-bold mb-4" data-i18n="docs-demo6-title">6. Estilo Dark Mode</h3>
+                <p class="text-slate-600 dark:text-slate-400 mb-6" data-i18n="docs-demo6-desc">
+                    Configura colores para un tema oscuro.
+                </p>
+                <div class="code-block p-4 mb-6">
+                    <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">backgroundColor</span>: <span class="string">'#1f2937'</span>,
+  <span class="property">textColor</span>: <span class="string">'#f3f4f6'</span>,
+  <span class="property">borderColor</span>: <span class="string">'#374151'</span>,
+  <span class="property">buttonBackground</span>: <span class="string">'#374151'</span>,
+  <span class="property">buttonBorder</span>: <span class="string">'#4b5563'</span>,
+  <span class="property">primaryColor</span>: <span class="string">'#8b5cf6'</span>
+};</code></pre>
+                </div>
+                <!-- Preview Visual -->
+                <div class="mb-6">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-2 font-medium uppercase tracking-wider">Vista previa (dark mode):</p>
+                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg shadow-lg" style="background-color: #1f2937; border: 1px solid #374151;">
+                        <a href="#" class="text-xs font-medium" style="color: #8b5cf6;">Herramientas por Accessibility.cl</a>
+                        <div class="flex items-center gap-1">
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold" style="background: #374151; border-color: #4b5563; color: #f3f4f6;">A</button>
+                            <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold" style="background: #374151; border-color: #4b5563; color: #f3f4f6;">A</button>
+                        </div>
+                        <button class="w-7 h-7 rounded border flex items-center justify-center" style="background: #374151; border-color: #4b5563;">
+                            <span style="color: #f3f4f6;">◐</span>
+                        </button>
+                        <button class="px-2 py-1 rounded text-xs" style="background: #8b5cf6; color: white;">Restablecer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methods -->
+    <section id="methods" class="py-20 bg-slate-50 dark:bg-background-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-black mb-4" data-i18n="docs-methods-title">Métodos de la API</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-8" data-i18n="docs-methods-desc">
+                Controla Easynav programáticamente usando la API global <code class="bg-slate-200 dark:bg-white/10 px-2 py-1 rounded">window.Easynav</code>.
+            </p>
+
+            <div class="space-y-6">
+                <!-- increaseFontSize -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.increaseFontSize()</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-increaseFontSize">Aumenta el tamaño de fuente por el valor de step.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="comment">// Aumentar tamaño</span>
+<span class="keyword">Easynav</span>.increaseFontSize();
+
+<span class="comment">// Encadenar métodos</span>
+<span class="keyword">Easynav</span>.increaseFontSize().increaseFontSize();</code></pre>
+                    </div>
+                </div>
+
+                <!-- decreaseFontSize -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.decreaseFontSize()</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-decreaseFontSize">Disminuye el tamaño de fuente por el valor de step.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">Easynav</span>.decreaseFontSize();</code></pre>
+                    </div>
+                </div>
+
+                <!-- setFontSize -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.setFontSize(size)</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-setFontSize">Establece un tamaño de fuente específico (se limita a min/max).</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="comment">// Establecer al 120%</span>
+<span class="keyword">Easynav</span>.setFontSize(<span class="number">120</span>);
+
+<span class="comment">// Establecer al máximo</span>
+<span class="keyword">Easynav</span>.setFontSize(<span class="number">150</span>);</code></pre>
+                    </div>
+                </div>
+
+                <!-- toggleContrast -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.toggleContrast()</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-toggleContrast">Alterna el modo de alto contraste.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">Easynav</span>.toggleContrast();</code></pre>
+                    </div>
+                </div>
+
+                <!-- setContrast -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.setContrast(enabled)</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-setContrast">Establece el estado del alto contraste.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="comment">// Activar contraste</span>
+<span class="keyword">Easynav</span>.setContrast(<span class="keyword">true</span>);
+
+<span class="comment">// Desactivar contraste</span>
+<span class="keyword">Easynav</span>.setContrast(<span class="keyword">false</span>);</code></pre>
+                    </div>
+                </div>
+
+                <!-- reset -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.reset()</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-reset">Restablece todas las configuraciones a valores por defecto.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">Easynav</span>.reset();</code></pre>
+                    </div>
+                </div>
+
+                <!-- getState -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.getState()</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-getState">Obtiene el estado actual (fontSize, highContrast, etc.).</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">const</span> state = <span class="keyword">Easynav</span>.getState();
+<span class="keyword">console</span>.log(state);
+<span class="comment">// { fontSize: 100, highContrast: false, isFloating: false }</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- setOptions -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.setOptions(options)</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-setOptions">Actualiza las opciones en tiempo de ejecución.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="comment">// Cambiar el color primario en runtime</span>
+<span class="keyword">Easynav</span>.setOptions({
+  <span class="property">primaryColor</span>: <span class="string">'#dc2626'</span>
+});</code></pre>
+                    </div>
+                </div>
+
+                <!-- destroy -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">.destroy()</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-method-destroy">Destruye la instancia y limpia el DOM.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">Easynav</span>.destroy();</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events" class="py-20 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-black mb-4" data-i18n="docs-events-title">Callbacks / Eventos</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-8" data-i18n="docs-events-desc">
+                Escucha cambios y reacciona a las acciones del usuario.
+            </p>
+
+            <div class="space-y-6">
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">onInit</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-event-onInit">Se ejecuta cuando Easynav se inicializa.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">onInit</span>: <span class="keyword">function</span>(instance) {
+    <span class="keyword">console</span>.log(<span class="string">'Easynav inicializado!'</span>);
+  }
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">onFontChange</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-event-onFontChange">Se ejecuta cuando cambia el tamaño de fuente.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">onFontChange</span>: <span class="keyword">function</span>(newSize, instance) {
+    <span class="keyword">console</span>.log(<span class="string">'Nuevo tamaño:'</span>, newSize + <span class="string">'%'</span>);
+    <span class="comment">// Ejemplo: enviar analytics</span>
+    gtag(<span class="string">'event'</span>, <span class="string">'font_change'</span>, { value: newSize });
+  }
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">onContrastChange</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-event-onContrastChange">Se ejecuta cuando cambia el estado del alto contraste.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">onContrastChange</span>: <span class="keyword">function</span>(isEnabled, instance) {
+    <span class="keyword">console</span>.log(<span class="string">'Alto contraste:'</span>, isEnabled ? <span class="string">'ON'</span> : <span class="string">'OFF'</span>);
+  }
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">onReset</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-event-onReset">Se ejecuta cuando se restablece la configuración.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">onReset</span>: <span class="keyword">function</span>(instance) {
+    <span class="keyword">console</span>.log(<span class="string">'Configuración restablecida'</span>);
+  }
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-white/10">
+                        <h4 class="font-mono text-lg font-bold text-primary">onFloatingChange</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="docs-event-onFloatingChange">Se ejecuta cuando cambia el estado flotante.</p>
+                    </div>
+                    <div class="code-block p-4 rounded-none">
+                        <pre><code><span class="keyword">window</span>.<span class="property">EasynavConfig</span> = {
+  <span class="property">onFloatingChange</span>: <span class="keyword">function</span>(isFloating, instance) {
+    <span class="keyword">console</span>.log(<span class="string">'Modo flotante:'</span>, isFloating);
+  }
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Customizer -->
+    <section id="customizer" class="py-20 bg-primary/5 dark:bg-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-black mb-4" data-i18n="docs-customizer-title">Personalizador en Vivo</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-8" data-i18n="docs-customizer-desc">
+                Prueba diferentes configuraciones y copia el código generado.
+            </p>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Controls -->
+                <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 p-6">
+                    <h3 class="font-bold mb-6" data-i18n="docs-customizer-options">Opciones</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="docs-customizer-primaryColor">Color Primario</label>
+                            <input type="color" id="cfg-primary" value="#5739ef" class="w-full h-10 rounded cursor-pointer">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="docs-customizer-bgColor">Color de Fondo</label>
+                            <input type="color" id="cfg-bg" value="#f8f9fa" class="w-full h-10 rounded cursor-pointer">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="docs-customizer-floatingPos">Posición Flotante</label>
+                            <select id="cfg-floating-pos" class="w-full p-2 rounded border border-slate-300 dark:border-white/20 dark:bg-white/5">
+                                <option value="top-right" data-i18n="docs-customizer-topRight">Arriba Derecha</option>
+                                <option value="top-left" data-i18n="docs-customizer-topLeft">Arriba Izquierda</option>
+                                <option value="bottom-right" data-i18n="docs-customizer-bottomRight">Abajo Derecha</option>
+                                <option value="bottom-left" data-i18n="docs-customizer-bottomLeft">Abajo Izquierda</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="docs-customizer-minSize">Tamaño Mínimo (%)</label>
+                            <input type="number" id="cfg-font-min" value="80" min="50" max="100" class="w-full p-2 rounded border border-slate-300 dark:border-white/20 dark:bg-white/5">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2" data-i18n="docs-customizer-maxSize">Tamaño Máximo (%)</label>
+                            <input type="number" id="cfg-font-max" value="150" min="100" max="300" class="w-full p-2 rounded border border-slate-300 dark:border-white/20 dark:bg-white/5">
+                        </div>
+                        
+                        <div class="bg-slate-100 dark:bg-white/10 p-3 rounded-lg">
+                            <p class="text-xs text-slate-500 dark:text-slate-400">
+                                <span class="material-symbols-outlined text-xs align-middle">lock</span>
+                                <span data-i18n="docs-customizer-brandNotice">Marca fija: "Herramientas por Accessibility.cl"</span>
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="cfg-floating" checked class="rounded">
+                            <label for="cfg-floating" class="text-sm" data-i18n="docs-customizer-floatingMode">Modo Flotante</label>
+                        </div>
+                        
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="cfg-draggable" checked class="rounded">
+                            <label for="cfg-draggable" class="text-sm" data-i18n="docs-customizer-draggable">Arrastrable</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generated Code -->
+                <div>
+                    <!-- Live Preview -->
+                    <div class="bg-slate-800 rounded-xl border border-slate-700 p-6 mb-4">
+                        <h3 class="font-bold mb-4 text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-emerald-400">visibility</span>
+                            <span data-i18n="docs-customizer-preview">Vista Previa en Vivo</span>
+                        </h3>
+                        <div class="flex justify-center py-4">
+                            <div id="widget-preview" class="inline-flex items-center gap-3 px-4 py-2 rounded-lg shadow-lg transition-all duration-300">
+                                <a href="#" class="text-xs font-medium preview-brand">Herramientas por Accessibility.cl</a>
+                                <div class="flex items-center gap-1">
+                                    <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold preview-btn">A</button>
+                                    <button class="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold preview-btn">A</button>
+                                </div>
+                                <button class="w-7 h-7 rounded border flex items-center justify-center preview-btn">
+                                    <span>◐</span>
+                                </button>
+                                <button class="px-2 py-1 rounded text-xs preview-reset">Restablecer</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 p-6 mb-4">
+                        <h3 class="font-bold mb-4" data-i18n="docs-customizer-generatedCode">Código Generado</h3>
+                        <div class="code-block p-4 text-sm" id="generated-code">
+                            <pre><code></code></pre>
+                        </div>
+                    </div>
+                    <button onclick="copyGeneratedCode()" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">content_copy</span>
+                        <span data-i18n="docs-customizer-copyCode">Copiar Código</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+                    <span class="material-symbols-outlined">navigation</span>
+                </div>
+                <span class="text-xl font-bold">Easynav <span class="text-primary">Free</span></span>
+            </div>
+            <p class="text-slate-400 mb-6" data-i18n="docs-footer-desc">Herramientas de usabilidad web. No vendemos falsas promesas. <a href="https://accessibility.cl" target="_blank" class="text-primary hover:underline">¿Quieres accesibilidad real?</a></p>
+            <p class="text-sm text-slate-500" data-i18n="docs-footer-copyright">© 2024 Easynav Free. Licencia MIT.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Generador de código en vivo
+        function updateGeneratedCode() {
+            const primary = document.getElementById('cfg-primary').value;
+            const bg = document.getElementById('cfg-bg').value;
+            const floatingPos = document.getElementById('cfg-floating-pos').value;
+            const fontMin = document.getElementById('cfg-font-min').value;
+            const fontMax = document.getElementById('cfg-font-max').value;
+            const floating = document.getElementById('cfg-floating').checked;
+            const draggable = document.getElementById('cfg-draggable').checked;
+
+            // Actualizar preview visual
+            updateWidgetPreview(primary, bg);
+
+            const code = `<script>
+  window.EasynavConfig = {
+    primaryColor: '${primary}',
+    backgroundColor: '${bg}',
+    floatingEnabled: ${floating},
+    floatingPosition: '${floatingPos}',
+    floatingDraggable: ${draggable},
+    fontSizeMin: ${fontMin},
+    fontSizeMax: ${fontMax}
+  };
+<\/script>
+<script src="easynav-custom.js" defer><\/script>`;
+
+            document.querySelector('#generated-code code').textContent = code;
+        }
+
+        function copyGeneratedCode() {
+            const code = document.querySelector('#generated-code code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('¡Código copiado!');
+            });
+        }
+
+        // Actualizar preview visual del widget
+        function updateWidgetPreview(primary, bg) {
+            const preview = document.getElementById('widget-preview');
+            const brand = preview.querySelector('.preview-brand');
+            const buttons = preview.querySelectorAll('.preview-btn');
+            const reset = preview.querySelector('.preview-reset');
+
+            // Calcular color de borde basado en el fondo
+            const borderColor = adjustBrightness(bg, -20);
+            const textColor = isLightColor(bg) ? '#374151' : '#f3f4f6';
+
+            // Aplicar estilos al contenedor
+            preview.style.backgroundColor = bg;
+            preview.style.border = `1px solid ${borderColor}`;
+
+            // Aplicar estilos a la marca
+            brand.style.color = primary;
+
+            // Aplicar estilos a los botones
+            buttons.forEach(btn => {
+                btn.style.backgroundColor = isLightColor(bg) ? '#ffffff' : adjustBrightness(bg, 15);
+                btn.style.borderColor = borderColor;
+                btn.style.color = textColor;
+            });
+
+            // Aplicar estilos al botón de reset
+            reset.style.backgroundColor = primary;
+            reset.style.color = '#ffffff';
+        }
+
+        // Helpers para colores
+        function isLightColor(hex) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+            return luminance > 0.5;
+        }
+
+        function adjustBrightness(hex, percent) {
+            const num = parseInt(hex.slice(1), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = Math.max(0, Math.min(255, (num >> 16) + amt));
+            const G = Math.max(0, Math.min(255, ((num >> 8) & 0x00FF) + amt));
+            const B = Math.max(0, Math.min(255, (num & 0x0000FF) + amt));
+            return '#' + (0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1);
+        }
+
+        // Listeners
+        document.querySelectorAll('#customizer input, #customizer select').forEach(el => {
+            el.addEventListener('input', updateGeneratedCode);
+            el.addEventListener('change', updateGeneratedCode);
+        });
+
+        // Initial generate
+        updateGeneratedCode();
+    </script>
+
+    <!-- Load Easynav Custom para demo -->
+    <script src="easynav-custom.js"></script>
+
+    <!-- Selector de Idioma Flotante -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <div class="relative">
+            <button id="lang-selector-btn" 
+                class="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm font-medium text-slate-700 dark:text-slate-200">
+                <span class="material-symbols-outlined text-lg">language</span>
+                <span id="current-lang">ES</span>
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+            </button>
+            <div id="lang-menu" class="hidden absolute bottom-full left-0 mb-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden min-w-[140px]">
+                <button class="lang-option w-full px-4 py-3 text-left text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 transition-colors" data-lang="es">
+                    <span class="text-lg">🇪🇸</span>
+                    <span class="text-slate-700 dark:text-slate-200">Español</span>
+                </button>
+                <button class="lang-option w-full px-4 py-3 text-left text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 transition-colors border-t border-slate-100 dark:border-slate-700" data-lang="en">
+                    <span class="text-lg">🇺🇸</span>
+                    <span class="text-slate-700 dark:text-slate-200">English</span>
+                </button>
+                <button class="lang-option w-full px-4 py-3 text-left text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 transition-colors border-t border-slate-100 dark:border-slate-700" data-lang="pt">
+                    <span class="text-lg">🇧🇷</span>
+                    <span class="text-slate-700 dark:text-slate-200">Português</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar idioma guardado antes de todo
+        (function() {
+            const savedLang = localStorage.getItem('easynav-site-lang');
+            if (savedLang) {
+                document.documentElement.lang = savedLang;
+            }
+        })();
+
+        // ============================================
+        // INTERNACIONALIZACIÓN DEL SITIO WEB - DOCS
+        // ============================================
+        (function() {
+            const translations = {
+                es: {
+                    // Meta
+                    'docs-page-title': 'Easynav Free - Documentación y Configuración',
+                    // Navigation
+                    'docs-nav-start': 'Inicio',
+                    'docs-nav-settings': 'Configuración',
+                    'docs-nav-demos': 'Demos',
+                    'docs-nav-methods': 'Métodos',
+                    'docs-nav-events': 'Eventos',
+                    'docs-nav-back': '← Volver',
+                    // Hero
+                    'docs-title': 'Documentación',
+                    'docs-desc': 'Aprende a configurar y personalizar Easynav Free para que se adapte perfectamente a tu sitio web.',
+                    'docs-warning': '<span class="material-symbols-outlined text-sm align-middle">info</span> <strong>Importante:</strong> Easynav ofrece herramientas de usabilidad, NO es una solución de accesibilidad real. <a href="https://accessibility.cl" target="_blank" class="underline font-bold">Conoce más sobre accesibilidad real</a>.',
+                    'docs-cta-start': 'Comenzar',
+                    'docs-cta-github': 'GitHub',
+                    // Quick Start
+                    'docs-quickstart': 'Inicio Rápido',
+                    'docs-basic-version': 'Versión Básica (Sin Configuración)',
+                    'docs-basic-desc': 'La forma más simple de instalar Easynav. Solo agrega el script y funciona automáticamente.',
+                    'docs-custom-version': 'Versión Personalizable',
+                    'docs-custom-desc': 'Usa la versión custom para personalizar colores, comportamiento y más.',
+                    'docs-config-methods': 'Métodos de Configuración',
+                    'docs-method-data-attrs': 'Data Attributes',
+                    'docs-method-data-attrs-desc': 'Configura directamente en el tag script con atributos data-*',
+                    'docs-method-js-obj': 'JavaScript Object',
+                    'docs-method-js-obj-desc': 'Define window.EasynavConfig antes de cargar el script',
+                    'docs-method-api': 'API Runtime',
+                    'docs-method-api-desc': 'Modifica opciones en tiempo real con métodos de la API',
+                    // Settings
+                    'docs-settings-title': 'Opciones de Configuración',
+                    'docs-settings-desc': 'Todas las opciones disponibles para personalizar Easynav Free.',
+                    'docs-settings-appearance': 'Apariencia',
+                    'docs-settings-fontsize': 'Tamaño de Fuente',
+                    'docs-settings-contrast': 'Alto Contraste',
+                    'docs-settings-floating': 'Modo Flotante',
+                    'docs-settings-texts': 'Textos Personalizables',
+                    // Table headers
+                    'docs-table-option': 'Opción',
+                    'docs-table-type': 'Tipo',
+                    'docs-table-description': 'Descripción',
+                    // Option descriptions
+                    'docs-opt-primaryColor': 'Color principal para hover y elementos activos',
+                    'docs-opt-backgroundColor': 'Color de fondo de la barra',
+                    'docs-opt-textColor': 'Color del texto',
+                    'docs-opt-borderColor': 'Color del borde',
+                    'docs-opt-borderRadius': 'Radio de bordes de los botones',
+                    'docs-opt-position': "'top' | 'bottom' - Posición de la barra",
+                    'docs-opt-zIndex': 'z-index del contenedor',
+                    'docs-opt-fontSizeEnabled': 'Habilitar controles de tamaño de fuente',
+                    'docs-opt-fontSizeMin': 'Porcentaje mínimo de zoom',
+                    'docs-opt-fontSizeMax': 'Porcentaje máximo de zoom',
+                    'docs-opt-fontSizeStep': 'Incremento por cada clic',
+                    'docs-opt-fontSizeDefault': 'Valor inicial',
+                    'docs-opt-contrastEnabled': 'Habilitar botón de alto contraste',
+                    'docs-opt-contrastBackground': 'Color de fondo en modo contraste',
+                    'docs-opt-contrastText': 'Color de texto en modo contraste',
+                    'docs-opt-contrastLinkHover': 'Color hover de links en contraste',
+                    'docs-opt-floatingEnabled': 'Habilitar modo flotante al scroll',
+                    'docs-opt-floatingThreshold': 'Pixels de scroll para activar',
+                    'docs-opt-floatingPosition': "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'",
+                    'docs-opt-floatingDraggable': 'Permitir arrastrar en modo flotante',
+                    'docs-brand-notice': 'El texto de marca "Herramientas por Accessibility.cl" no es personalizable.',
+                    'docs-opt-labels-reset': 'Texto del botón reset',
+                    // Demos
+                    'docs-demos-title': 'Demos Interactivas',
+                    'docs-demos-desc': 'Prueba diferentes configuraciones en tiempo real.',
+                    'docs-demo1-title': '1. Configuración via Data Attributes',
+                    'docs-demo1-desc': 'La forma más simple de personalizar: agrega atributos data-* directamente en el script tag.',
+                    'docs-demo2-title': '2. Configuración via JavaScript',
+                    'docs-demo2-desc': 'Define un objeto de configuración antes de cargar el script para mayor control.',
+                    'docs-demo3-title': '3. Barra Fija (Sin Modo Flotante)',
+                    'docs-demo3-desc': 'Desactiva el modo flotante para mantener la barra siempre en su posición original.',
+                    'docs-demo4-title': '4. Solo Alto Contraste (Sin Controles de Fuente)',
+                    'docs-demo4-desc': 'Muestra solo el botón de alto contraste.',
+                    'docs-demo5-title': '5. Solo Tamaño de Fuente (Sin Alto Contraste)',
+                    'docs-demo5-desc': 'Muestra solo los controles de tamaño de fuente, sin el botón de contraste.',
+                    'docs-demo6-title': '6. Estilo Dark Mode',
+                    'docs-demo6-desc': 'Configura colores para un tema oscuro.',
+                    // Methods
+                    'docs-methods-title': 'Métodos de la API',
+                    'docs-methods-desc': 'Controla Easynav programáticamente usando la API global <code class="bg-slate-200 dark:bg-white/10 px-2 py-1 rounded">window.Easynav</code>.',
+                    'docs-method-increaseFontSize': 'Aumenta el tamaño de fuente por el valor de step.',
+                    'docs-method-decreaseFontSize': 'Disminuye el tamaño de fuente por el valor de step.',
+                    'docs-method-setFontSize': 'Establece un tamaño de fuente específico (se limita a min/max).',
+                    'docs-method-toggleContrast': 'Alterna el modo de alto contraste.',
+                    'docs-method-setContrast': 'Establece el estado del alto contraste.',
+                    'docs-method-reset': 'Restablece todas las configuraciones a valores por defecto.',
+                    'docs-method-getState': 'Obtiene el estado actual (fontSize, highContrast, etc.).',
+                    'docs-method-setOptions': 'Actualiza las opciones en tiempo de ejecución.',
+                    'docs-method-destroy': 'Destruye la instancia y limpia el DOM.',
+                    // Events
+                    'docs-events-title': 'Callbacks / Eventos',
+                    'docs-events-desc': 'Escucha cambios y reacciona a las acciones del usuario.',
+                    'docs-event-onInit': 'Se ejecuta cuando Easynav se inicializa.',
+                    'docs-event-onFontChange': 'Se ejecuta cuando cambia el tamaño de fuente.',
+                    'docs-event-onContrastChange': 'Se ejecuta cuando cambia el estado del alto contraste.',
+                    'docs-event-onReset': 'Se ejecuta cuando se restablece la configuración.',
+                    'docs-event-onFloatingChange': 'Se ejecuta cuando cambia el estado flotante.',
+                    // Customizer
+                    'docs-customizer-title': 'Personalizador en Vivo',
+                    'docs-customizer-desc': 'Prueba diferentes configuraciones y copia el código generado.',
+                    'docs-customizer-options': 'Opciones',
+                    'docs-customizer-primaryColor': 'Color Primario',
+                    'docs-customizer-bgColor': 'Color de Fondo',
+                    'docs-customizer-floatingPos': 'Posición Flotante',
+                    'docs-customizer-topRight': 'Arriba Derecha',
+                    'docs-customizer-topLeft': 'Arriba Izquierda',
+                    'docs-customizer-bottomRight': 'Abajo Derecha',
+                    'docs-customizer-bottomLeft': 'Abajo Izquierda',
+                    'docs-customizer-minSize': 'Tamaño Mínimo (%)',
+                    'docs-customizer-maxSize': 'Tamaño Máximo (%)',
+                    'docs-customizer-brandNotice': 'Marca fija: "Herramientas por Accessibility.cl"',
+                    'docs-customizer-floatingMode': 'Modo Flotante',
+                    'docs-customizer-draggable': 'Arrastrable',
+                    'docs-customizer-preview': 'Vista Previa en Vivo',
+                    'docs-customizer-generatedCode': 'Código Generado',
+                    'docs-customizer-copyCode': 'Copiar Código',
+                    // Footer
+                    'docs-footer-desc': 'Herramientas de usabilidad web. No vendemos falsas promesas. <a href="https://accessibility.cl" target="_blank" class="text-primary hover:underline">¿Quieres accesibilidad real?</a>',
+                    'docs-footer-copyright': '© 2024 Easynav Free. Licencia MIT.'
+                },
+                en: {
+                    // Meta
+                    'docs-page-title': 'Easynav Free - Documentation & Configuration',
+                    // Navigation
+                    'docs-nav-start': 'Start',
+                    'docs-nav-settings': 'Settings',
+                    'docs-nav-demos': 'Demos',
+                    'docs-nav-methods': 'Methods',
+                    'docs-nav-events': 'Events',
+                    'docs-nav-back': '← Back',
+                    // Hero
+                    'docs-title': 'Documentation',
+                    'docs-desc': 'Learn how to configure and customize Easynav Free to fit perfectly with your website.',
+                    'docs-warning': '<span class="material-symbols-outlined text-sm align-middle">info</span> <strong>Important:</strong> Easynav offers usability tools, NOT a real accessibility solution. <a href="https://accessibility.cl" target="_blank" class="underline font-bold">Learn more about real accessibility</a>.',
+                    'docs-cta-start': 'Get Started',
+                    'docs-cta-github': 'GitHub',
+                    // Quick Start
+                    'docs-quickstart': 'Quick Start',
+                    'docs-basic-version': 'Basic Version (No Configuration)',
+                    'docs-basic-desc': 'The simplest way to install Easynav. Just add the script and it works automatically.',
+                    'docs-custom-version': 'Customizable Version',
+                    'docs-custom-desc': 'Use the custom version to personalize colors, behavior and more.',
+                    'docs-config-methods': 'Configuration Methods',
+                    'docs-method-data-attrs': 'Data Attributes',
+                    'docs-method-data-attrs-desc': 'Configure directly in the script tag with data-* attributes',
+                    'docs-method-js-obj': 'JavaScript Object',
+                    'docs-method-js-obj-desc': 'Define window.EasynavConfig before loading the script',
+                    'docs-method-api': 'API Runtime',
+                    'docs-method-api-desc': 'Modify options at runtime with API methods',
+                    // Settings
+                    'docs-settings-title': 'Configuration Options',
+                    'docs-settings-desc': 'All available options to customize Easynav Free.',
+                    'docs-settings-appearance': 'Appearance',
+                    'docs-settings-fontsize': 'Font Size',
+                    'docs-settings-contrast': 'High Contrast',
+                    'docs-settings-floating': 'Floating Mode',
+                    'docs-settings-texts': 'Customizable Texts',
+                    // Table headers
+                    'docs-table-option': 'Option',
+                    'docs-table-type': 'Type',
+                    'docs-table-description': 'Description',
+                    // Option descriptions
+                    'docs-opt-primaryColor': 'Primary color for hover and active elements',
+                    'docs-opt-backgroundColor': 'Bar background color',
+                    'docs-opt-textColor': 'Text color',
+                    'docs-opt-borderColor': 'Border color',
+                    'docs-opt-borderRadius': 'Button border radius',
+                    'docs-opt-position': "'top' | 'bottom' - Bar position",
+                    'docs-opt-zIndex': 'Container z-index',
+                    'docs-opt-fontSizeEnabled': 'Enable font size controls',
+                    'docs-opt-fontSizeMin': 'Minimum zoom percentage',
+                    'docs-opt-fontSizeMax': 'Maximum zoom percentage',
+                    'docs-opt-fontSizeStep': 'Increment per click',
+                    'docs-opt-fontSizeDefault': 'Initial value',
+                    'docs-opt-contrastEnabled': 'Enable high contrast button',
+                    'docs-opt-contrastBackground': 'Background color in contrast mode',
+                    'docs-opt-contrastText': 'Text color in contrast mode',
+                    'docs-opt-contrastLinkHover': 'Link hover color in contrast',
+                    'docs-opt-floatingEnabled': 'Enable floating mode on scroll',
+                    'docs-opt-floatingThreshold': 'Scroll pixels to activate',
+                    'docs-opt-floatingPosition': "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'",
+                    'docs-opt-floatingDraggable': 'Allow dragging in floating mode',
+                    'docs-brand-notice': 'The brand text "Tools by Accessibility.cl" is not customizable.',
+                    'docs-opt-labels-reset': 'Reset button text',
+                    // Demos
+                    'docs-demos-title': 'Interactive Demos',
+                    'docs-demos-desc': 'Try different configurations in real time.',
+                    'docs-demo1-title': '1. Configuration via Data Attributes',
+                    'docs-demo1-desc': 'The simplest way to customize: add data-* attributes directly to the script tag.',
+                    'docs-demo2-title': '2. Configuration via JavaScript',
+                    'docs-demo2-desc': 'Define a configuration object before loading the script for more control.',
+                    'docs-demo3-title': '3. Fixed Bar (No Floating Mode)',
+                    'docs-demo3-desc': 'Disable floating mode to keep the bar always in its original position.',
+                    'docs-demo4-title': '4. High Contrast Only (No Font Controls)',
+                    'docs-demo4-desc': 'Show only the high contrast button.',
+                    'docs-demo5-title': '5. Font Size Only (No High Contrast)',
+                    'docs-demo5-desc': 'Show only font size controls, without the contrast button.',
+                    'docs-demo6-title': '6. Dark Mode Style',
+                    'docs-demo6-desc': 'Configure colors for a dark theme.',
+                    // Methods
+                    'docs-methods-title': 'API Methods',
+                    'docs-methods-desc': 'Control Easynav programmatically using the global API <code class="bg-slate-200 dark:bg-white/10 px-2 py-1 rounded">window.Easynav</code>.',
+                    'docs-method-increaseFontSize': 'Increases font size by the step value.',
+                    'docs-method-decreaseFontSize': 'Decreases font size by the step value.',
+                    'docs-method-setFontSize': 'Sets a specific font size (limited to min/max).',
+                    'docs-method-toggleContrast': 'Toggles high contrast mode.',
+                    'docs-method-setContrast': 'Sets the high contrast state.',
+                    'docs-method-reset': 'Resets all settings to default values.',
+                    'docs-method-getState': 'Gets the current state (fontSize, highContrast, etc.).',
+                    'docs-method-setOptions': 'Updates options at runtime.',
+                    'docs-method-destroy': 'Destroys the instance and cleans up the DOM.',
+                    // Events
+                    'docs-events-title': 'Callbacks / Events',
+                    'docs-events-desc': 'Listen to changes and react to user actions.',
+                    'docs-event-onInit': 'Executes when Easynav initializes.',
+                    'docs-event-onFontChange': 'Executes when font size changes.',
+                    'docs-event-onContrastChange': 'Executes when high contrast state changes.',
+                    'docs-event-onReset': 'Executes when settings are reset.',
+                    'docs-event-onFloatingChange': 'Executes when floating state changes.',
+                    // Customizer
+                    'docs-customizer-title': 'Live Customizer',
+                    'docs-customizer-desc': 'Try different configurations and copy the generated code.',
+                    'docs-customizer-options': 'Options',
+                    'docs-customizer-primaryColor': 'Primary Color',
+                    'docs-customizer-bgColor': 'Background Color',
+                    'docs-customizer-floatingPos': 'Floating Position',
+                    'docs-customizer-topRight': 'Top Right',
+                    'docs-customizer-topLeft': 'Top Left',
+                    'docs-customizer-bottomRight': 'Bottom Right',
+                    'docs-customizer-bottomLeft': 'Bottom Left',
+                    'docs-customizer-minSize': 'Minimum Size (%)',
+                    'docs-customizer-maxSize': 'Maximum Size (%)',
+                    'docs-customizer-brandNotice': 'Fixed brand: "Tools by Accessibility.cl"',
+                    'docs-customizer-floatingMode': 'Floating Mode',
+                    'docs-customizer-draggable': 'Draggable',
+                    'docs-customizer-preview': 'Live Preview',
+                    'docs-customizer-generatedCode': 'Generated Code',
+                    'docs-customizer-copyCode': 'Copy Code',
+                    // Footer
+                    'docs-footer-desc': 'Web usability tools. We don\'t sell false promises. <a href="https://accessibility.cl" target="_blank" class="text-primary hover:underline">Want real accessibility?</a>',
+                    'docs-footer-copyright': '© 2024 Easynav Free. MIT License.'
+                },
+                pt: {
+                    // Meta
+                    'docs-page-title': 'Easynav Free - Documentação e Configuração',
+                    // Navigation
+                    'docs-nav-start': 'Início',
+                    'docs-nav-settings': 'Configuração',
+                    'docs-nav-demos': 'Demos',
+                    'docs-nav-methods': 'Métodos',
+                    'docs-nav-events': 'Eventos',
+                    'docs-nav-back': '← Voltar',
+                    // Hero
+                    'docs-title': 'Documentação',
+                    'docs-desc': 'Aprenda a configurar e personalizar Easynav Free para se adaptar perfeitamente ao seu site.',
+                    'docs-warning': '<span class="material-symbols-outlined text-sm align-middle">info</span> <strong>Importante:</strong> Easynav oferece ferramentas de usabilidade, NÃO é uma solução de acessibilidade real. <a href="https://accessibility.cl" target="_blank" class="underline font-bold">Saiba mais sobre acessibilidade real</a>.',
+                    'docs-cta-start': 'Começar',
+                    'docs-cta-github': 'GitHub',
+                    // Quick Start
+                    'docs-quickstart': 'Início Rápido',
+                    'docs-basic-version': 'Versão Básica (Sem Configuração)',
+                    'docs-basic-desc': 'A forma mais simples de instalar Easynav. Apenas adicione o script e funciona automaticamente.',
+                    'docs-custom-version': 'Versão Personalizável',
+                    'docs-custom-desc': 'Use a versão custom para personalizar cores, comportamento e mais.',
+                    'docs-config-methods': 'Métodos de Configuração',
+                    'docs-method-data-attrs': 'Data Attributes',
+                    'docs-method-data-attrs-desc': 'Configure diretamente na tag script com atributos data-*',
+                    'docs-method-js-obj': 'JavaScript Object',
+                    'docs-method-js-obj-desc': 'Defina window.EasynavConfig antes de carregar o script',
+                    'docs-method-api': 'API Runtime',
+                    'docs-method-api-desc': 'Modifique opções em tempo de execução com métodos da API',
+                    // Settings
+                    'docs-settings-title': 'Opções de Configuração',
+                    'docs-settings-desc': 'Todas as opções disponíveis para personalizar Easynav Free.',
+                    'docs-settings-appearance': 'Aparência',
+                    'docs-settings-fontsize': 'Tamanho de Fonte',
+                    'docs-settings-contrast': 'Alto Contraste',
+                    'docs-settings-floating': 'Modo Flutuante',
+                    'docs-settings-texts': 'Textos Personalizáveis',
+                    // Table headers
+                    'docs-table-option': 'Opção',
+                    'docs-table-type': 'Tipo',
+                    'docs-table-description': 'Descrição',
+                    // Option descriptions
+                    'docs-opt-primaryColor': 'Cor principal para hover e elementos ativos',
+                    'docs-opt-backgroundColor': 'Cor de fundo da barra',
+                    'docs-opt-textColor': 'Cor do texto',
+                    'docs-opt-borderColor': 'Cor da borda',
+                    'docs-opt-borderRadius': 'Raio das bordas dos botões',
+                    'docs-opt-position': "'top' | 'bottom' - Posição da barra",
+                    'docs-opt-zIndex': 'z-index do container',
+                    'docs-opt-fontSizeEnabled': 'Habilitar controles de tamanho de fonte',
+                    'docs-opt-fontSizeMin': 'Porcentagem mínima de zoom',
+                    'docs-opt-fontSizeMax': 'Porcentagem máxima de zoom',
+                    'docs-opt-fontSizeStep': 'Incremento por clique',
+                    'docs-opt-fontSizeDefault': 'Valor inicial',
+                    'docs-opt-contrastEnabled': 'Habilitar botão de alto contraste',
+                    'docs-opt-contrastBackground': 'Cor de fundo no modo contraste',
+                    'docs-opt-contrastText': 'Cor do texto no modo contraste',
+                    'docs-opt-contrastLinkHover': 'Cor hover de links no contraste',
+                    'docs-opt-floatingEnabled': 'Habilitar modo flutuante ao rolar',
+                    'docs-opt-floatingThreshold': 'Pixels de scroll para ativar',
+                    'docs-opt-floatingPosition': "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'",
+                    'docs-opt-floatingDraggable': 'Permitir arrastar no modo flutuante',
+                    'docs-brand-notice': 'O texto de marca "Ferramentas por Accessibility.cl" não é personalizável.',
+                    'docs-opt-labels-reset': 'Texto do botão reset',
+                    // Demos
+                    'docs-demos-title': 'Demos Interativas',
+                    'docs-demos-desc': 'Teste diferentes configurações em tempo real.',
+                    'docs-demo1-title': '1. Configuração via Data Attributes',
+                    'docs-demo1-desc': 'A forma mais simples de personalizar: adicione atributos data-* diretamente na tag script.',
+                    'docs-demo2-title': '2. Configuração via JavaScript',
+                    'docs-demo2-desc': 'Defina um objeto de configuração antes de carregar o script para maior controle.',
+                    'docs-demo3-title': '3. Barra Fixa (Sem Modo Flutuante)',
+                    'docs-demo3-desc': 'Desative o modo flutuante para manter a barra sempre na posição original.',
+                    'docs-demo4-title': '4. Apenas Alto Contraste (Sem Controles de Fonte)',
+                    'docs-demo4-desc': 'Mostra apenas o botão de alto contraste.',
+                    'docs-demo5-title': '5. Apenas Tamanho de Fonte (Sem Alto Contraste)',
+                    'docs-demo5-desc': 'Mostra apenas os controles de tamanho de fonte, sem o botão de contraste.',
+                    'docs-demo6-title': '6. Estilo Dark Mode',
+                    'docs-demo6-desc': 'Configure cores para um tema escuro.',
+                    // Methods
+                    'docs-methods-title': 'Métodos da API',
+                    'docs-methods-desc': 'Controle Easynav programaticamente usando a API global <code class="bg-slate-200 dark:bg-white/10 px-2 py-1 rounded">window.Easynav</code>.',
+                    'docs-method-increaseFontSize': 'Aumenta o tamanho de fonte pelo valor de step.',
+                    'docs-method-decreaseFontSize': 'Diminui o tamanho de fonte pelo valor de step.',
+                    'docs-method-setFontSize': 'Define um tamanho de fonte específico (limitado a min/max).',
+                    'docs-method-toggleContrast': 'Alterna o modo de alto contraste.',
+                    'docs-method-setContrast': 'Define o estado do alto contraste.',
+                    'docs-method-reset': 'Restaura todas as configurações para valores padrão.',
+                    'docs-method-getState': 'Obtém o estado atual (fontSize, highContrast, etc.).',
+                    'docs-method-setOptions': 'Atualiza as opções em tempo de execução.',
+                    'docs-method-destroy': 'Destrói a instância e limpa o DOM.',
+                    // Events
+                    'docs-events-title': 'Callbacks / Eventos',
+                    'docs-events-desc': 'Escute mudanças e reaja às ações do usuário.',
+                    'docs-event-onInit': 'Executa quando Easynav inicializa.',
+                    'docs-event-onFontChange': 'Executa quando o tamanho de fonte muda.',
+                    'docs-event-onContrastChange': 'Executa quando o estado do alto contraste muda.',
+                    'docs-event-onReset': 'Executa quando a configuração é restaurada.',
+                    'docs-event-onFloatingChange': 'Executa quando o estado flutuante muda.',
+                    // Customizer
+                    'docs-customizer-title': 'Personalizador ao Vivo',
+                    'docs-customizer-desc': 'Teste diferentes configurações e copie o código gerado.',
+                    'docs-customizer-options': 'Opções',
+                    'docs-customizer-primaryColor': 'Cor Primária',
+                    'docs-customizer-bgColor': 'Cor de Fundo',
+                    'docs-customizer-floatingPos': 'Posição Flutuante',
+                    'docs-customizer-topRight': 'Superior Direita',
+                    'docs-customizer-topLeft': 'Superior Esquerda',
+                    'docs-customizer-bottomRight': 'Inferior Direita',
+                    'docs-customizer-bottomLeft': 'Inferior Esquerda',
+                    'docs-customizer-minSize': 'Tamanho Mínimo (%)',
+                    'docs-customizer-maxSize': 'Tamanho Máximo (%)',
+                    'docs-customizer-brandNotice': 'Marca fixa: "Ferramentas por Accessibility.cl"',
+                    'docs-customizer-floatingMode': 'Modo Flutuante',
+                    'docs-customizer-draggable': 'Arrastável',
+                    'docs-customizer-preview': 'Preview ao Vivo',
+                    'docs-customizer-generatedCode': 'Código Gerado',
+                    'docs-customizer-copyCode': 'Copiar Código',
+                    // Footer
+                    'docs-footer-desc': 'Ferramentas de usabilidade web. Não vendemos falsas promessas. <a href="https://accessibility.cl" target="_blank" class="text-primary hover:underline">Quer acessibilidade real?</a>',
+                    'docs-footer-copyright': '© 2024 Easynav Free. Licença MIT.'
+                }
+            };
+
+            function getLanguage() {
+                const htmlLang = document.documentElement.lang || 'es';
+                const lang = htmlLang.split('-')[0].toLowerCase();
+                return translations[lang] ? lang : 'es';
+            }
+
+            function t(key) {
+                const lang = getLanguage();
+                return translations[lang][key] || translations.es[key] || key;
+            }
+
+            function translatePage() {
+                const lang = getLanguage();
+                
+                // Actualizar título de la página
+                document.title = t('docs-page-title');
+
+                // Traducir todos los elementos con data-i18n
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    const translation = t(key);
+                    if (translation) {
+                        el.innerHTML = translation;
+                    }
+                });
+
+                // Traducir placeholders
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-placeholder');
+                    const translation = t(key);
+                    if (translation) {
+                        el.placeholder = translation;
+                    }
+                });
+
+                // Traducir titles/aria-labels
+                document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-title');
+                    const translation = t(key);
+                    if (translation) {
+                        el.title = translation;
+                        el.setAttribute('aria-label', translation);
+                    }
+                });
+            }
+
+            function setLanguage(lang) {
+                if (translations[lang]) {
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('easynav-site-lang', lang);
+                    translatePage();
+                }
+            }
+
+            // Ejecutar traducción cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', translatePage);
+            } else {
+                translatePage();
+            }
+
+            // Exponer funciones para uso externo
+            window.EasynavI18n = { t, getLanguage, translatePage, setLanguage };
+        })();
+
+        // Funcionalidad del selector de idioma
+        (function() {
+            const langBtn = document.getElementById('lang-selector-btn');
+            const langMenu = document.getElementById('lang-menu');
+            const langOptions = document.querySelectorAll('.lang-option');
+            const currentLangText = document.getElementById('current-lang');
+            const langNames = { es: 'ES', en: 'EN', pt: 'PT' };
+            
+            // Mostrar/ocultar menú
+            langBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langMenu.classList.toggle('hidden');
+            });
+            
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function() {
+                langMenu.classList.add('hidden');
+            });
+            
+            // Cambiar idioma sin recargar
+            langOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    document.documentElement.lang = lang;
+                    localStorage.setItem('easynav-site-lang', lang);
+                    
+                    // Traducir página en vivo
+                    if (window.EasynavI18n) {
+                        window.EasynavI18n.translatePage();
+                    }
+                    
+                    // Actualizar texto del botón
+                    currentLangText.textContent = langNames[lang] || 'ES';
+                    
+                    // Cerrar menú
+                    langMenu.classList.add('hidden');
+                });
+            });
+            
+            // Actualizar texto del botón con el idioma actual
+            const currentLang = document.documentElement.lang.split('-')[0];
+            if (currentLangText) {
+                currentLangText.textContent = langNames[currentLang] || 'ES';
+            }
+        })();
+    </script>
+</body>
+</html>
